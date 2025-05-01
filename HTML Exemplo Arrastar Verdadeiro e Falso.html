@@ -1,0 +1,76 @@
+Claro! Vou te mostrar como criar um simples jogo de "Verdadeiro ou Falso" usando HTML5 com a funcionalidade de arrastar e soltar (drag and drop). Aqui está um exemplo básico:
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verdadeiro ou Falso - Arrastar e Soltar</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 50px;
+        }
+        .box {
+            width: 150px;
+            height: 150px;
+            border: 2px solid #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            margin: 10px;
+        }
+        .draggable {
+            width: 100px;
+            height: 50px;
+            background-color: #f0f0f0;
+            border: 1px solid #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: grab;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Jogo de Verdadeiro ou Falso</h2>
+<p>Arraste a resposta correta para a caixa correspondente.</p>
+
+<div class="container">
+    <div id="verdadeiro" class="box" ondrop="drop(event)" ondragover="allowDrop(event)">Verdadeiro</div>
+    <div id="falso" class="box" ondrop="drop(event)" ondragover="allowDrop(event)">Falso</div>
+</div>
+
+<div class="container">
+    <div id="drag1" class="draggable" draggable="true" ondragstart="drag(event)">A Terra é redonda.</div>
+    <div id="drag2" class="draggable" draggable="true" ondragstart="drag(event)">O sol gira em torno da Terra.</div>
+</div>
+
+<script>
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+
+    function drag(ev) {
+        ev.dataTransfer.setData("text", ev.target.id);
+    }
+
+    function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        ev.target.appendChild(document.getElementById(data));
+    }
+</script>
+
+</body>
+</html>
+
+Explicação:
+HTML: Estrutura básica do jogo com duas caixas (Verdadeiro e Falso) e duas frases que podem ser arrastadas.
+CSS: Estilização simples para as caixas e os elementos arrastáveis.
+JavaScript: Funções para permitir o arrastar e soltar dos elementos.
+
+Você pode expandir este exemplo adicionando mais perguntas e respostas, ou até mesmo implementando uma lógica para verificar se a resposta foi colocada na caixa correta. Divirta-se criando seu jogo!
